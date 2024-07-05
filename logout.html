@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://imgs.search.brave.com/-GbMT_4A0B3aIHAObTi1n_gEyBrdxGn_pgawzYWEvrc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9h/YnN0cmFjdC1kaWdp/dGFsLWdyaWQtYmxh/Y2stYmFja2dyb3Vu/ZF81Mzg3Ni05NzY0/Ny5qcGc_c2l6ZT02/MjYmZXh0PWpwZw');
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            color: #ddd; /* Light text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .thank-you {
+            text-align: center;
+            animation: fadeIn 1s ease-out, slideIn 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .thank-you h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .thank-you p {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you">
+        <h1>Thank You!</h1>
+        <p>Krishna Prasad</p>
+    </div>
+
+    <script>
+        // Redirect to this page upon logout from sample.html
+        // Example using JavaScript to simulate redirection
+        setTimeout(function() {
+            window.location.href = "logout.html";
+        }, 4000); // Redirect after 4 seconds (adjust as needed)
+    </script>
+</body>
+</html>

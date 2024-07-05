@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generative Language API Example</title>
+    <style>
+        /* CSS to make the text field grow vertically */
+        #answerText {
+            width: 100%;
+            min-height: 200px; /* Initial height, can be adjusted */
+            overflow: hidden; /* Hide overflow to reveal word by word */
+            white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+            border: 1px solid #ccc; /* Optional border for clarity */
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        async function generateContent() {
+            const outputArea = document.getElementById('textbox').value.trim();
+    
+            if (!outputArea) {
+                alert("Please enter a question.");
+                return;
+            }
+    
+            const API_KEY = '{API_KEY}'; // Replace with your actual Google API key
+            const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+            
+            const payload = {
+                contents: [
+                    {
+                        parts: [
+                            {
+                                text: outputArea
+                            }
+                        ]
+                    }
+                ]
+            };
+    
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.candidates && data.candidates.length > 0) {
+                        const generatedAnswer = data.candidates[0].content.parts[0].text;
+    
+                        // Clear previous content
+                        document.getElementById('answerText').innerHTML = '';
+    
+                        // Display word by word with animation effect
+                        const words = generatedAnswer.split(' ');
+                        for (let i = 0; i < words.length; i++) {
+                            setTimeout(() => {
+                                document.getElementById('answerText').innerHTML += words[i] + ' ';
+                            }, i * 200); // Adjust speed by changing the multiplier (200ms delay here)
+                        }
+    
+                    } else {
+                        document.getElementById('answerText').innerHTML = '<p>Error: No content generated.</p>';
+                    }
+                } else {
+                    const errorData = await response.json();
+                    alert(`Error: ${errorData.error.message}`);
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+    </script>
+    
+</head>
+<body>
+    <h1>Generative Language API Example</h1>
+    <p>Enter text to generate content:</p>
+    <textarea id="textbox" rows="4" cols="50">Explain how AI works</textarea><br><br>
+    <button onclick="generateContent()">Generate Content</button><br><br>
+    <div id="answerText"></div>
+</body>
+</html>

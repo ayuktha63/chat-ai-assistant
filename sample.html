@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="macbook-air-21">
+      <main class="rectangle-parent">
+        <div class="frame-child"></div>
+        <div class="frame-wrapper">
+          <div class="mingcutemenu-fill-parent">
+            <img
+              class="mingcutemenu-fill-icon"
+              loading="lazy"
+              alt=""
+              src="./public/mingcutemenufill.svg"
+            />
+
+            <div class="frame-container">
+              <div class="rectangle-group">
+                <div class="frame-item"></div>
+                <img
+                  class="typcnplus-icon"
+                  loading="lazy"
+                  alt=""
+                  src="./public/typcnplus.svg"
+                />
+              </div>
+            </div>
+            <div class="tablerhelp-parent">
+              <button
+                class="image-button"
+                type="image-button"
+                onclick="alert('stats button is clicked')"
+              >
+                <img
+                  class="tablerhelp-icon"
+                  loading="lazy"
+                  alt=""
+                  src="./public/tablerhelp.svg"
+                />
+              </button>
+
+              <div class="mynauiactivity-square-parent">
+                <button
+                  class="image-button"
+                  type="image-button"
+                  onclick="alert('stats button is clicked')"
+                >
+                  <img
+                    class="mynauiactivity-square-icon"
+                    loading="lazy"
+                    alt=""
+                    src="./public/mynauiactivitysquare.svg"
+                  />
+                </button>
+                <button
+                  class="image-button"
+                  type="image-button"
+                  onclick="alert('settings button is clicked')"
+                >
+                  <img
+                    class="solarsettings-line-duotone-icon"
+                    loading="lazy"
+                    alt=""
+                    src="./public/solarsettingslineduotone.svg"
+                  />
+                </button>
+              </div>
+              <button
+                class="image-button"
+                type="image-button"
+                onclick="alert('profile button is clicked')"
+              >
+                <img
+                  class="solaruser-bold-icon"
+                  loading="lazy"
+                  alt=""
+                  src="./public/solaruserbold.svg"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="rectangle-container">
+          <div class="frame-inner"></div>
+          <div class="frame-div">
+            <div class="frame-parent">
+              <div class="profile-image-container-wrapper">
+                <div class="profile-image-container">
+                  <img
+                    class="cool-profile-picture-87h46gcob-icon"
+                    loading="lazy"
+                    alt=""
+                    src="./public/coolprofilepicture87h46gcobjl5e4xu-1@2x.png"
+                  />
+
+                  <input
+                    type="text"
+                    id="outputArea"
+                    placeholder="Text will appear here..."
+                    readonly
+                  /><br />
+                </div>
+              </div>
+              <div class="frame-group">
+                <div class="loading-bar-parent">
+                  <textarea
+                    id="answerText"
+                    placeholder="Text will appear here"
+                    readonly
+                  ></textarea>
+                </div>
+                <img
+                  class="screenshot-2024-06-27-at-342"
+                  loading="lazy"
+                  alt=""
+                  src="https://imgs.search.brave.com/flJeWmg2ddC9M_P-3znkR71VtL_hIG7wWtjUlKUz7u4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9sdW1p/ZXJlLWEuYWthbWFp/aGQubmV0L3YxL2lt/YWdlcy9pbWFnZV9j/ZjMyMjczMS5qcGVn/P3JlZ2lvbj0wLDAs/MjA0OCw4Nzg"
+                />
+              </div>
+            </div>
+          </div>
+          <footer class="frame-footer">
+            <div class="enter-the-prompt-here-parent">
+              <div class="input-border-parent">
+                <div>
+                  <input
+                    type="text"
+                    id="textbox"
+                    class="input-border"
+                    placeholder="Enter the prompt..."
+                  /><br />
+                </div>
+                <button
+                  class="image-button"
+                  type="image-button"
+                  onclick="alert('mic is working')"
+                >
+                  <img
+                    class="icround-mic-icon"
+                    loading="lazy"
+                    alt=""
+                    src="./public/icroundmic.svg"
+                  />
+                </button>
+              </div>
+            </div>
+            <div class="akar-iconssend-wrapper">
+              <button
+                class="image-button"
+                id="image-button"
+                type="image-button"
+              >
+                <img
+                  class="akar-iconssend"
+                  loading="lazy"
+                  alt=""
+                  src="./public/akariconssend.svg"
+                />
+              </button>
+            </div>
+          </footer>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', async (event) => {
+              const username = localStorage.getItem('username');
+              if (username) {
+                document.querySelector('.ayuktha').textContent = username;
+              }
+            });
+          
+            function logout() {
+              window.location.href = 'logout.html';
+            }
+          
+            function resizeTextarea() {
+              const textarea = document.getElementById('answerText');
+              textarea.style.height = 'auto';
+              textarea.style.height = textarea.scrollHeight + 'px';
+            }
+          
+            document.getElementById('image-button').addEventListener('click', async function() {
+              const outputArea = document.getElementById('textbox').value.trim();
+          
+              if (!outputArea) {
+                alert("Please enter a question.");
+                return;
+              }
+          
+              const API_KEY = 'AIzaSyCC0Ahnvyy8QnpKviay-DqTmS8zKMJa-V8'; // Replace with your actual Google API key
+              const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+              
+              const payload = {
+                contents: [
+                  {
+                    parts: [
+                      {
+                        text: outputArea
+                      }
+                    ]
+                  }
+                ]
+              };
+          
+              try {
+                const response = await fetch(API_URL, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(payload)
+                });
+          
+                if (response.ok) {
+                  const data = await response.json();
+                  if (data.candidates && data.candidates.length > 0) {
+                    const generatedAnswer = data.candidates[0].content.parts[0].text;
+          
+                    // Update input fields with question and answer
+                    document.getElementById('outputArea').value = outputArea;
+                    
+                    // Word-by-word effect
+                    displayTextWordByWord(generatedAnswer);
+          
+                    // Clear input textarea
+                    document.getElementById('textbox').value = '';
+                  } else {
+                    document.getElementById('answerText').value = 'Error: No content generated.';
+                  }
+                } else {
+                  const errorData = await response.json();
+                  alert(`Error: ${errorData.error.message}`);
+                }
+              } catch (error) {
+                alert(`Error: ${error.message}`);
+              }
+            });
+          
+            function displayTextWordByWord(text) {
+              const words = text.split(' ');
+              const interval = 200; // Adjust interval (in milliseconds) between each word
+          
+              let i = 0;
+              const intervalId = setInterval(function() {
+                document.getElementById('answerText').value += words[i] + ' ';
+                resizeTextarea(); // Resize textarea after each word
+          
+                i++;
+                if (i >= words.length) {
+                  clearInterval(intervalId);
+                }
+              }, interval);
+            }
+          
+            function resizeTextarea() {
+              const answerText = document.getElementById('answerText');
+              answerText.style.height = 'auto';
+              answerText.style.height = answerText.scrollHeight + 'px';
+            }
+          
+            // Resize answerText textarea on page load
+            document.addEventListener('DOMContentLoaded', function() {
+              resizeTextarea();
+            });
+          </script>
+          
+        <div class="footer">
+          <div class="footer-content">
+            <button
+              class="image-button"
+              type="image-button"
+              onclick="logout()"
+            >
+              <img
+                class="solarlogout-2-line-duotone-icon"
+                loading="lazy"
+                alt=""
+                src="./public/solarlogout2lineduotone.svg"
+              />
+            </button>
+            <div class="user-info">
+              <div class="rectangle-parent2">
+                <div class="frame-child1"></div>
+                <img
+                  class="cool-profile-picture-87h46gcob-icon1"
+                  loading="lazy"
+                  alt=""
+                  src="./public/coolprofilepicture87h46gcobjl5e4xu-1@2x.png"
+                />
+
+                <div class="ayuktha-wrapper">
+                  <a class="ayuktha">Ayuktha</a>
+                </div>
+              </div>
+              <div class="chat-history">
+                <div class="frame-parent1">
+                  <div class="today-wrapper">
+                    <div class="today">Today</div>
+                  </div>
+                  <div class="rectangle-parent3">
+                    <div class="frame-child2"></div>
+                    <img
+                      class="uiwmessage-icon"
+                      alt=""
+                      src="./public/uiwmessage.svg"
+                    />
+
+                    <div class="user-message-content">
+                      <div class="how-to-make1">how to make chicken cur..</div>
+                    </div>
+                    <div class="group-div">
+                      <div class="frame-child3"></div>
+                      <img
+                        class="basilcross-solid-icon"
+                        alt=""
+                        src="./public/basilcrosssolid.svg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="bot-message">
+                  <img
+                    class="uiwmessage-icon1"
+                    loading="lazy"
+                    alt=""
+                    src="./public/uiwmessage.svg"
+                  />
+
+                  <div class="bot-message-content">
+                    <div class="tell-me-more">Tell me more about llama.</div>
+                  </div>
+                </div>
+                <img
+                  class="divider-icon"
+                  loading="lazy"
+                  alt=""
+                  src="./public/line-2.svg"
+                />
+              </div>
+              <div class="logout-button">
+                <div class="logout">Logout</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://imgs.search.brave.com/-nVzjk7h83LS0AMUubCLxVsXitrR9HkuRa13am19UCA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzMzLzY0LzA0/LzM2MF9GXzczMzY0/MDQ5NV9DekszSE1k/alNTdFVldEh2anlk/aWx6MElmQVhCNG4w/Vy5qcGc');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .create-account-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            text-align: center;
+        }
+
+        .create-account-container h2 {
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .create-account-container input[type="text"],
+        .create-account-container input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #666;
+            background-color: #444;
+            color: #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .create-account-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .create-account-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .create-account-container .back-to-login {
+            margin-top: 20px;
+        }
+
+        .create-account-container .back-to-login a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .create-account-container .back-to-login a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="create-account-container">
+        <h2>Create Account</h2>
+        <form id="createAccountForm" onsubmit="return createAccount()">
+            <input type="text" id="newUsername" name="newUsername" placeholder="Username" required><br>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Password" required><br>
+            <input type="submit" value="Create Account">
+            <p id="createErrorMessage" class="error-message"></p>
+        </form>
+        <div class="back-to-login">
+            <p>Already have an account? <a href="index.html">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to create account
+        function createAccount() {
+            var newUsername = document.getElementById('newUsername').value;
+            var newPassword = document.getElementById('newPassword').value;
+
+            // Check if username already exists
+            if (localStorage.getItem(newUsername) !== null) {
+                document.getElementById('createErrorMessage').innerText = 'Username already exists.';
+                return false;
+            }
+
+            // Store new username and password
+            localStorage.setItem(newUsername, newPassword);
+            alert('Account created successfully!');
+            window.location.href = 'index.html'; // Redirect to login page
+            return false; // Prevent form submission since we're redirecting
+        }
+    </script>
+</body>
+</html>
