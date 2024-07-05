@@ -21,7 +21,7 @@ This project aims to create a chat AI assistant using the Gemini API. It leverag
 ### Development Process
 
 1. **Design Phase**:
-   - Designed the user interface in Figma.
+   - Designed the user interface in [Figma](https://www.figma.com/design/ckXsPtnASv488puJfB8o9g/chat-ai-assistant?node-id=0-1&t=ECcJhDOXZMKwHwIG-1).
    - Converted Figma design to HTML and CSS.
 
 2. **Implementation**:
