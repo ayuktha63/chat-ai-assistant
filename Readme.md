@@ -60,6 +60,10 @@ This project aims to create a chat AI assistant using the Gemini API. It leverag
 - **Local Storage Usage**:
   - Login date saved in local storage for inspection.
 
+### Project Outcome
+
+The outcome of this project was to become familiar with front-end designing techniques and API handling, particularly integrating the Gemini API with ChatGPT for interactive chat functionality.
+
 ### Conclusion
 
 This project demonstrates the integration of ChatGPT and the Gemini API to build a responsive and interactive chat AI assistant. Despite potential errors and non-responsive design, it showcases functionalities implemented using modern web technologies.
